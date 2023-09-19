@@ -107,10 +107,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#courses">Register</a>
+                        <a class="nav-link" href="./registration/registration.jsp">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#fees">Login</a>
+                        <a class="nav-link" href="./login/login.jsp">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#academic-records">Results</a>
@@ -141,21 +141,21 @@
             <!-- Slides -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../img/library.jpg" alt="College Image">
+                    <img src="./images/library.jpg" alt="College Image">
                     <div class="carousel-caption">
                         <h3>College</h3>
                         <p>A beautiful college campus.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="../img/pencils.jpg" alt="University Image">
+                    <img src="./images/pencils.jpg" alt="University Image">
                     <div class="carousel-caption">
                         <h3>University</h3>
                         <p>An iconic university building.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="../img/university.jpg" alt="Education Image">
+                    <img src="./images/university.jpg" alt="Education Image">
                     <div class="carousel-caption">
                         <h3>Education</h3>
                         <p>Supporting lifelong learning.</p>

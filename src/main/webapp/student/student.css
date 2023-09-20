@@ -1,0 +1,89 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E2E2E2;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #007acc;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.navbar {
+    background-color: #007acc;
+}
+
+/* Make the container full width */
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    width: 100%;
+    /* Set width to 100% for full width */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #007acc;
+}
+
+.btn-primary {
+    background-color: #FFD966;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #D9B8FF;
+}
+
+/* Custom colors */
+.bg-color-1 {
+    background-color: #D9B8FF;
+}
+
+.bg-color-2 {
+    background-color: #FFAFA3;
+}
+
+.bg-color-3 {
+    background-color: #85E0A3;
+}
+
+.bg-color-4 {
+    background-color: #AFBCCF;
+}
+
+.bg-color-5 {
+    background-color: #BDFF00;
+}
+
+.bg-color-6 {
+    background-color: #FFD966;
+}
+
+
+.footer {
+    background-color: #AFBCCF;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.footer-links {
+    margin-top: 20px;
+}
+
+.footer-links a {
+    color: white;
+    margin-right: 20px;
+}

@@ -48,7 +48,7 @@
                         <div class="card-body">
                             <h5 class="card-title">View Courses Previously Registered </h5>
                             <p class="card-text">View Courses that which are you already enrolled.</p>
-                            <a href="./view_reg_course.jsp" class="btn btn-primary">Register for Courses</a>
+                            <a href="./view_reg_course.jsp" class="btn btn-primary">Registered Courses</a>
                         </div>
                     </div>
                 </div>
@@ -82,18 +82,10 @@
                         <!-- Add more options as needed -->
                     </select>
                 </div>
-
-                <!-- Semester Dropdown -->
-                <div class="form-group">
-                    <label for="semester">Semester:</label>
-                    <select class="form-control" id="semester" name="semester" required>
-                        <option value="Spring">Spring</option>
-                        <option value="Summer">Summer</option>
-                        <option value="Fall">Fall</option>
-                        <option value="Winter">Winter</option>
-                    </select>
-                </div>
-
+				 <div class="form-group">
+                        <label for="registrationDate">registration Date:</label>
+                        <input type="date" class="form-control" name="registrationDate" required>
+                    </div>
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary btn-block">Register</button>
             </form>

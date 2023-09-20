@@ -1,6 +1,83 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@ page import="database.DatabaseConnection" %>
+
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.sql.ResultSet" %>
+
+   <%
+if(request.getMethod().equalsIgnoreCase("post")) {
+    Connection connection = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    String user_name = request.getParameter("name");
+    String password = request.getParameter("password");
+    String role = request.getParameter("role");
+    String firstName = request.getParameter("first_name");
+    String lastName = request.getParameter("last_name");
+    String email = request.getParameter("email");
+    String phoneNumber = request.getParameter("phone_number");
+
+    try {
+        connection = DatabaseConnection.getConnection();
+
+        // Checking if the username already exists
+        ps = connection.prepareStatement("SELECT COUNT(*) FROM users WHERE user_name = ?");
+        ps.setString(1, user_name);
+        rs = ps.executeQuery();
+        rs.next();
+        int usernameCount = rs.getInt(1);
+
+        // Checking if the email already exists
+        ps = connection.prepareStatement("SELECT COUNT(*) FROM users WHERE email = ?");
+        ps.setString(1, email);
+        rs = ps.executeQuery();
+        rs.next();
+        int emailCount = rs.getInt(1);
+
+        if (usernameCount > 0) {
+            out.println("<h3 style='color:red'>Username already exists.</h3>");
+        } else if (emailCount > 0) {
+            out.println("<h3 style='color:red'>Email already exists.</h3>");
+        } else {
+            ps = connection.prepareStatement("INSERT INTO users (user_name, password, role, first_name, last_name, email, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            ps.setString(1, user_name);
+            ps.setString(2, password);
+            ps.setString(3, role);
+            ps.setString(4, firstName);
+            ps.setString(5, lastName);
+            ps.setString(6, email);
+            ps.setString(7, phoneNumber);
+
+            int count = ps.executeUpdate();
+
+            if (count > 0) {
+                out.println("<h3 style='color:green'>Successfully Inserted</h3>");
+            } else {
+                out.println("<h3 style='color:red'>Not Inserted due to some errors</h3>");
+            }
+            connection.close();
+            ps.close();
+            rs.close();
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        out.println("<p style='color:red'>Database Exception: " + e.getMessage() + "</p>");
+    } finally {
+        // Close resources
+        try { if (rs != null) rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+        try { if (ps != null) ps.close(); } catch (SQLException e) { e.printStackTrace(); }
+        try { if (connection != null) connection.close(); } catch (SQLException e) { e.printStackTrace(); }
+    }
+}
+%>
+
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,131 +87,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        /* styles.css */
-
-        /* Add your custom styles here */
-
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            max-width: 100%;
-            margin-top: 20px;
-        }
-
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .col-md-6 {
-            flex-basis: calc(50% - 20px);
-            margin: 10px;
-        }
-
-        .registration-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            margin: 10px 0;
-            height: 800px;
-        }
-
-        h2 {
-            color: #FFD966;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="password"],
-        select,
-        input[type="email"],
-        input[type="tel"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #D9B8FF;
-            border-radius: 5px;
-            color: #E2E2E2;
-        }
-
-        select {
-            cursor: pointer;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #85E0A3;
-            color: #E2E2E2;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        button:hover {
-            background-color: #FFAFA3;
-        }
-
-        .image-container {
-            height: 400px;
-            /* Equal height to registration form */
-            margin: 10px 0;
-            border-radius: 10px;
-            position: relative;
-        }
-
-        .image-container img {
-            border-radius: 10px;
-            margin-top: 10px;
-           height: 380px;
-        }
-
-        .login-text {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .message-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            margin: 10px 0;
-            text-align: center;
-            height: 100%;
-            /* Equal height to registration form */
-        }
-
-        @media (max-width: 768px) {
-            .col-md-6 {
-                flex-basis: 100%;
-                margin: 10px 0;
-            }
-
-            .registration-container {
-                padding: 10px;
-            }
-
-            .image-container {
-                display: none;
-            }
-        }
-    </style>
+   <link rel="stylesheet" href="./registration.css">
 </head>
 
 <body>
@@ -143,7 +96,7 @@
             <div class="col-md-6 registration-container">
                 <h2>Registration</h2>
 
-                <form action="registration_process.php" method="post">
+                <form action="" method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" id="name" name="name" required>

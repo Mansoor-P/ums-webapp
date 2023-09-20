@@ -1,0 +1,125 @@
+@charset "ISO-8859-1";
+
+  /* styles.css */
+
+        /* Add your custom styles here */
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 100%;
+            margin-top: 20px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .col-md-6 {
+            flex-basis: calc(50% - 20px);
+            margin: 10px;
+        }
+
+        .registration-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 10px 0;
+            height: 800px;
+        }
+
+        h2 {
+            color: #FFD966;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select,
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #D9B8FF;
+            border-radius: 5px;
+            color: #E2E2E2;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #85E0A3;
+            color: #E2E2E2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #FFAFA3;
+        }
+
+        .image-container {
+            height: 400px;
+            /* Equal height to registration form */
+            margin: 10px 0;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .image-container img {
+            border-radius: 10px;
+            margin-top: 10px;
+           height: 380px;
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .message-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 10px 0;
+            text-align: center;
+            height: 100%;
+            /* Equal height to registration form */
+        }
+
+        @media (max-width: 768px) {
+            .col-md-6 {
+                flex-basis: 100%;
+                margin: 10px 0;
+            }
+
+            .registration-container {
+                padding: 10px;
+            }
+
+            .image-container {
+                display: none;
+            }
+        }

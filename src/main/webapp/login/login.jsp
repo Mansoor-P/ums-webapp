@@ -1,5 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-   
+  <%@ page import="database.DatabaseConnection" %>
+
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.io.IOException" %> 
+<%@ page import="java.sql.ResultSet" %>
+
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.ResultSet" %>
+
+ <%
+if(request.getMethod().equalsIgnoreCase("post")){
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+
+    try {
+	        connection = DatabaseConnection.getConnection();
+	        String username = request.getParameter("username");
+	        String role = request.getParameter("role");
+	        String password = request.getParameter("password");
+	
+	        // SQL query to check if the username and role and password match
+	        String sql = "SELECT * FROM users WHERE user_name = ? AND role=? AND password = ?";
+	        
+	        //"SELECT * FROM users WHERE user_name = ? OR email=? AND password = ?";
+	        
+	        preparedStatement = connection.prepareStatement(sql);
+	        preparedStatement.setString(1, username);
+	        preparedStatement.setString(2, role);
+	        preparedStatement.setString(3, password);
+	        
+	        resultSet = preparedStatement.executeQuery();
+		
+		        if (resultSet.next()) {
+		        	if(role.equalsIgnoreCase("student")){
+		        		 response.sendRedirect("../student/student.jsp");
+		        	}else if(role.equalsIgnoreCase("faculty")){
+		        		 response.sendRedirect("../faculty/faculty.jsp");
+		        	}else if(role.equalsIgnoreCase("admin")){
+		        		 response.sendRedirect("../admin/admin.jsp");
+		        	}
+		            //response.sendRedirect("../index.jsp");
+		        } else {
+		            response.setContentType("text/html");
+		            out.println("<h5 style='color:red'>Invalid username or password. Please try again.</h5>");
+		        }
+	        preparedStatement.close();
+	        connection.close();
+	        resultSet.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Handle database errors here
+        response.setContentType("text/html");
+        out.println("<h5 style='color:red'>An error occurred : " + e.getMessage()+ " </h5>");
+    } 
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,68 +72,28 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css">
 
-    <style>
-        /* styles.css */
-
-        /* Add your custom styles here */
-
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #AFBCCF;
-            border-radius: 10px;
-        }
-
-        h2 {
-            color: #FFD966;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #D9B8FF;
-            border-radius: 5px;
-            color: #E2E2E2;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #85E0A3;
-            color: #E2E2E2;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        button:hover {
-            background-color: #FFAFA3;
-        }
-    </style>
 </head>
 
 <body>
+
+
     <div class="container mt-5">
         <h2>Login</h2>
-        <form action="login_process.php" method="post">
+        <form action="" method="post">
             <div class="form-group">
                 <label for="username">Username or Email:</label>
                 <input type="text" class="form-control" id="username" name="username" required>
             </div>
+            <div class="form-group">
+                        <label for="role">Role:</label>
+                        <select class="form-control" id="role" name="role">
+                            <option value="student">Student</option>
+                            <option value="faculty">Faculty</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div> 
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" name="password" required>

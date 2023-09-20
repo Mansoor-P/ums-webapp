@@ -37,6 +37,10 @@ if(request.getMethod().equalsIgnoreCase("post")){
 	        resultSet = preparedStatement.executeQuery();
 		
 		        if (resultSet.next()) {
+		        	
+		        	request.getSession();
+		        	session.setAttribute("session_name",resultSet.getString("user_name"));
+		        	
 		        	if(role.equalsIgnoreCase("student")){
 		        		 response.sendRedirect("../student/student.jsp");
 		        	}else if(role.equalsIgnoreCase("faculty")){

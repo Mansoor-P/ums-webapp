@@ -7,12 +7,12 @@
         <title>Student Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-       <link rel="stylesheet" href="student.css">
+       <link rel="stylesheet" href="./student.css">
     </head>
     
     <body>
         <div class="header">
-            <h1>Welcome, [Student Name]!</h1>
+            <h1>Welcome :${session_name} </h1>
         </div>
         <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -33,7 +33,7 @@
                         <a class="nav-link" href="#academic-records">Results</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./department.html">Departments</a>
+                        <a class="nav-link" href="./department.jsp">Departments</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#profile">Profile</a>
@@ -41,6 +41,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#leave-requests">Leave Requests</a>
                     </li>
+                   
                 </ul>
             </div>
         </nav>
@@ -55,7 +56,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">View Enrolled Courses</h5>
                                 <p class="card-text">View the list of courses you are currently enrolled in.</p>
-                                <a href="./view_reg_course.html" class="btn btn-primary">Go to Enrolled Courses</a>
+                                <a href="./view_reg_course.jsp" class="btn btn-primary">Go to Enrolled Courses</a>
                             </div>
                         </div>
                     </div>
@@ -64,7 +65,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Register for Courses</h5>
                                 <p class="card-text">Register for new courses that you wish to take.</p>
-                                <a href="./course_registration.html" class="btn btn-primary">Register for Courses</a>
+                                <a href="./course_registration.jsp" class="btn btn-primary">Register for Courses</a>
                             </div>
                         </div>
                     </div>
@@ -73,7 +74,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">View Exmas Notifications</h5>
                                 <p class="card-text">View the list of exams conducting</p>
-                                <a href="./view_exmas.html" class="btn btn-primary">view exams</a>
+                                <a href="./view_exmas.jsp" class="btn btn-primary">view exams</a>
                             </div>
                         </div>
                     </div>
@@ -98,7 +99,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">View Grades</h5>
                                 <p class="card-text">Check grades for current and past courses.</p>
-                                <a href="./view _grades.html" class="btn btn-primary">View Grades</a>
+                                <a href="./view _grades.jsp" class="btn btn-primary">View Grades</a>
                             </div>
                         </div>
                     </div>
@@ -115,7 +116,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">View Tuition and Fees</h5>
                                 <p class="card-text">Displays details about tuition and other fees.</p>
-                                <a href="./view_fees.html" class="btn btn-primary">View Tuition and Fees</a>
+                                <a href="./view_fees.jsp" class="btn btn-primary">View Tuition and Fees</a>
                             </div>
                         </div>
                     </div>
@@ -125,7 +126,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Make Payments</h5>
                                 <p class="card-text">Enables the student to make payments for tuition and fees.</p>
-                                <a href="./pay_fees.html" class="btn btn-primary">Make Payments</a>
+                                <a href="./pay_fees.jsp" class="btn btn-primary">Make Payments</a>
                             </div>
                         </div>
                     </div>
@@ -144,7 +145,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Submit Leave Request</h5>
                                 <p class="card-text">Allows the student to submit leave requests for various types.</p>
-                                <a href="./leave_request.html" class="btn btn-primary">Submit Leave Request</a>
+                                <a href="./leave_request.jsp" class="btn btn-primary">Submit Leave Request</a>
                             </div>
                         </div>
                     </div>
@@ -154,7 +155,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Check Leave Request Status</h5>
                                 <p class="card-text">Shows the status of previously submitted leave requests.</p>
-                                <a href="./leave_status.html" class="btn btn-primary">Check Leave Request Status</a>
+                                <a href="./leave_status.jsp" class="btn btn-primary">Check Leave Request Status</a>
                             </div>
                         </div>
                     </div>
@@ -173,7 +174,7 @@
                                 <h5 class="card-title">Update Personal Information</h5>
                                 <p class="card-text">Allows the student to update personal details like contact information.
                                 </p>
-                                <a href="./personal_info_change.html" class="btn btn-primary">Update Personal
+                                <a href="./personal_info_change.jsp" class="btn btn-primary">Update Personal
                                     Information</a>
                             </div>
                         </div>
@@ -184,7 +185,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Change Password</h5>
                                 <p class="card-text">Provides the option to change the login password.</p>
-                                <a href="./change_pwd.html" class="btn btn-primary">Change Password</a>
+                                <a href="./change_pwd.jsp" class="btn btn-primary">Change Password</a>
                             </div>
                         </div>
                     </div>

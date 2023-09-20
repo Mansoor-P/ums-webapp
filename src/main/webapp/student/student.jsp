@@ -69,15 +69,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title">View Exmas Notifications</h5>
-                                <p class="card-text">View the list of exams conducting</p>
-                                <a href="./view_exmas.jsp" class="btn btn-primary">view exams</a>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </section>
     
@@ -100,6 +92,16 @@
                                 <h5 class="card-title">View Grades</h5>
                                 <p class="card-text">Check grades for current and past courses.</p>
                                 <a href="./view _grades.jsp" class="btn btn-primary">View Grades</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                     <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">View Exmas Notifications</h5>
+                                <p class="card-text">View the list of exams conducting</p>
+                                <a href="./view_exmas.jsp" class="btn btn-primary">view exams</a>
                             </div>
                         </div>
                     </div>

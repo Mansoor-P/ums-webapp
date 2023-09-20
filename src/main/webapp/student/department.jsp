@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="database.DatabaseConnection" %>
+
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Statement" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +42,8 @@
                 -webkit-overflow-scrolling: touch;
             }
         }
+
+       
     </style>
 </head>
 <body>
@@ -50,25 +61,50 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Computer Science</td>
-                        <td>Dr. John Smith</td>
-                        <td>Building A, Room 101</td>
-                    </tr>
-                    <tr>
-                        <td>Electrical Engineering</td>
-                        <td>Dr. Jane Doe</td>
-                        <td>Building B, Room 202</td>
-                    </tr>
-                    <!-- Add more rows for other departments -->
+                    <%
+                        Connection connection = null;
+                        PreparedStatement pstmt = null;
+                        ResultSet rs = null;
+                        
+                        try {
+                            connection = DatabaseConnection.getConnection();
+                            pstmt = connection.prepareStatement("SELECT department_id, department_name, department_location, department_hod FROM department");
+                            rs = pstmt.executeQuery();
+                            
+                            while (rs.next()) {
+                    %>
+                            <tr>
+                                <td><a href="courses.jsp?departmentId=<%= rs.getString("department_id") %>"><%= rs.getString("department_name") %></a></td>
+                                <td><%= rs.getString("department_hod") %></td>
+                                <td><%= rs.getString("department_location") %></td>
+                            </tr>
+                    <%
+                            }
+                            rs.close();
+                            pstmt.close();
+                            connection.close();
+                            
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            try {
+                                if (rs != null) rs.close();
+                                if (pstmt != null) pstmt.close();
+                                if (connection != null) connection.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    %>
                 </tbody>
             </table>
-        </div>
-    </div>
+        </div> 
+      </div>
 
     <!-- Bootstrap JS (optional) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 </body>
 </html>
